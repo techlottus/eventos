@@ -12,5 +12,6 @@ const Image: FC<ImageComponentData> = memo(({ alt, src, classNames, classNamesIm
     }
   </div>
 });
+Image.displayName = "Image"
 
 export default Image

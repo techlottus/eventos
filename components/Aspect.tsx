@@ -5,7 +5,7 @@
 
 type AspectProps = {
   ratio: string;
-  children: any;
+  children: React.ReactNode;
 };
 
 // Aspect ratio is expressed as a padding-top percentage, where a ratio of 2:1 gives a padding-top percentage of 1 / 2 * 100 = 50%

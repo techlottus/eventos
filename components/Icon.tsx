@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { memo } from "react";
 import SearchIcon from "@/icons/search.svg";
 import MarkerIcon from "@/icons/marker.svg";
 import PhoneIcon from "@/icons/phone.svg";
@@ -21,7 +21,7 @@ import MailUteg from "@/icons/icono-mail.svg";
 import EventosInstitucionales from "@/icons/eventos-institucionales.svg";
 import X from "@/icons/X.svg";
 
-const iconTypes: any = {
+const iconTypes:Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
   search: SearchIcon,
   marker: MarkerIcon,
   phone: PhoneIcon,
@@ -44,10 +44,14 @@ const iconTypes: any = {
   utc_eventos_institucionales: EventosInstitucionales,
   X: X
 };
+type IconProps = {
+  name: string;
+} & React.SVGProps<SVGSVGElement>;
 
-const IconComponent: FC<any> = memo(({ name, ...props }: any) => {
+const IconComponent = memo(({ name, ...props }: IconProps) => {
   const Icon = iconTypes?.[name];
   return Icon ? <Icon {...props} /> : null;
 });
 
+IconComponent.displayName = "Icon";
 export default IconComponent

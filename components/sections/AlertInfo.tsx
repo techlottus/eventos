@@ -1,5 +1,4 @@
 import { FC } from "react"
-import RichtText from "@/components/Richtext/Richtext";
 import { LinkComponentConfig } from "@/types/LinkListComponentS";
 import { StrapiImage } from "@/types/strapi/common";
 

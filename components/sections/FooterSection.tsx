@@ -1,11 +1,11 @@
-import { FC, Fragment } from "react"
+import { Fragment } from "react"
 import Link from "next/link"
 import cn from "classnames"
 import Image from "@/components/Image"
 import Icon from "../Icon"
 import LinkContactTarget from "@/components/LinkContactTarget"
 import FooterLogo from "@/components/sections/footer/logo"
-import { FooterColumnItem, FooterGroup, FooterSection as Footersection } from "@/utils/getFooters"
+import {FooterColumnItem, FooterGroup, FooterSection as Footersection } from "@/utils/getFooters"
 
 interface FooterSect extends Footersection {
   onClickLogo: (() => void) | undefined
@@ -28,6 +28,8 @@ interface FooterSect extends Footersection {
  *
  * @returns {JSX.Element} The rendered FooterSection component.
  */
+
+
 const FooterSection = ({
   title,
   columns,
@@ -38,7 +40,7 @@ const FooterSection = ({
   social_medias,
   phone,
   onClickLogo
-}: any) => {
+}: FooterSect) => {
   return (
     <>
       <section className="flex" >
@@ -51,8 +53,8 @@ const FooterSection = ({
             <div className="flex justify-between w-full">
               {/* social media */}
               <div className="flex w-p:flex-wrap gap-9 items-center">
-                {
-                  social_medias.data && social_medias.data.map((item: any, i: number) => (
+                {// eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  social_medias.data && social_medias.data.map((item:any , i: number) => (
                     <Link key={`social-${i}`} href={item.attributes.href} passHref target={"_blank"}>
                       {item.attributes.icon_name ? <Icon name={item.attributes.icon_name} className="w-8 h-8 text-surface-500 w-p:text-balck" /> : null}
                     </Link>))
@@ -70,7 +72,7 @@ const FooterSection = ({
         {/* columns */}
         {
           columns.length > 0 && <div className="w-full p-6 w-t:hidden w-p:hidden flex gap-24 border-b  border-0 border-solid border-surface-300">
-            {
+            {// eslint-disable-next-line @typescript-eslint/no-explicit-any
               columns?.map((column: any, i: number) => <div key={`footer-column-${i}`} className="flex flex-col gap-6 w-64">
                 {
                   column.groups.map((group: FooterGroup, i: number) => {
@@ -81,7 +83,7 @@ const FooterSection = ({
                           : <p className="font-headings font-bold">{group.title}</p>
                       }
                       {
-                        group?.items?.map((item: any, j: number) => {
+                        group?.items?.map((item: FooterColumnItem, j: number) => {
                           return (
                             <Fragment key={`column-link-${j}`}>
                               {
@@ -107,7 +109,7 @@ const FooterSection = ({
           images.data.length > 0 && <div className="w-full p-6 flex flex-col border-b  border-0 border-solid border-surface-300">
             <p className="mb-5">{title}</p>
             <div className="flex gap-12 flex-wrap">
-              {
+              {// eslint-disable-next-line @typescript-eslint/no-explicit-any
                 images?.data?.map(({ attributes: { url, alternativeText } }: any, i: number) => <Image key={`certification-${i}`} classNamesImg="!w-auto !h-12 !relative" src={url} alt={alternativeText} />)
               }
             </div>
@@ -116,7 +118,7 @@ const FooterSection = ({
         {/* link */}
         {
           links.length > 0 && <div className="w-full p-6 w-t:p-2 w-p:p-4 flex justify-center">
-            {
+            {// eslint-disable-next-line @typescript-eslint/no-explicit-any
               links.map((link: any, i: number) => {
                 return <div key={`link-${i}`} >
                   <Link key={`link-${i}`} href={link.href} passHref target={link.target}>
