@@ -22,6 +22,9 @@
       "eundefinedvents/*": ["./src/*"],
       "@/utils/*": ["./utils/*"],
       "@/types/*": ["./types/*"],
+      "@/layouts/*": ["./layouts/*"],
+      "@/components/*": ["./components/*"],
+      "@/icons/*": ["./public/icons/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
