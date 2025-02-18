@@ -2,7 +2,7 @@ import HeaderFooterLayout from "@/layouts/HeaderFooter.layout";
 import getEventHome from "@/utils/getEventsHome";
 import getLayout from "@/utils/getLayout";
 import { Banner } from "@/components/sections/Banner";
-import { Card } from "@/components/Card";
+import { Card, CardType } from "@/components/Card";
 
 
 export default async function Home() {
@@ -25,10 +25,9 @@ export default async function Home() {
           <p className="font-texts font-normal text-surface-950 text-base">{eventHomeData?.eventList?.data?.attributes?.description}</p>
         </div>
         <div id="card-list" className="flex flex-wrap gap-6 mt-6">
-          {cardListData?.map((cardData) => (
-              <Card {...cardData} />
+          {cardListData?.map((cardData:CardType,i:number) => (
+              <Card key={i} {...cardData} />
           ))}
-
         </div>
       </section></div>
     </HeaderFooterLayout>
