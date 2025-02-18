@@ -47,7 +47,7 @@ export const Card = (props: CardType) => {
   const dateCard = ` ${new Date(cardData?.start_datetime).toLocaleDateString('es-ES', { month: 'long', day: 'numeric' })}  · ${new Date(cardData?.start_datetime).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })} - ${new Date(cardData?.end_datetime).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}`;
   
   return (
-    <div className="flex flex-col bg-transparent rounded-lg shadow-md w-full h-full group">
+    <div className="flex flex-col bg-transparent rounded-lg shadow-md w-full h-full group cursor-pointer transition-transform transform hover:scale-105">
       <div className='rounded-t-lg  h-full w-full bg-surface-200'>
         <Aspect ratio='2/1'>
           {cardData?.is_private && <div id="tag-private" className={cn("absolute top-2 right-2 bg-surface-900 text-surface-0 font-texts text-sm font-normal px-2 py-1 rounded z-10")}>
@@ -69,13 +69,13 @@ export const Card = (props: CardType) => {
         <h3 className="font-headings text-base font-semibold text-surface-900">{cardData?.name}</h3>
         {cardData?.video?.youtube_id && <div className='flex items-center'><span className='font-icons-solid fill-error-500 text-error-500'>fiber_manual_record</span> <span className='font-texts font-bold text-sm text-error-500'>Grabación disponible</span></div>}
         <div className='flex items-center space-x-1'>
-          <span className='material-symbols-outlined text-base'>schedule</span>
+          <span className='material-symbols-outlined !text-sm font-normal'>schedule</span>
           <span className=" ml-2 font-texts font-normal text-surface-950 text-sm">{dateCard}</span>
         </div>
         </div>        
-        <a href="/" className='flex space-x-1 justify-end text-info-500 font-texts font-bold text-base cursor-pointer'>
-          <span className='group-hover:underline'>Ver detalles</span><span className='material-symbols-outlined text-base'>chevron_right</span>
-        </a>
+        <div className='flex space-x-1 justify-end text-info-500 font-texts font-bold text-base '>
+          <span className='group-hover:underline'>Ver detalles</span><span className='material-symbols-outlined !text-base'>chevron_right</span>
+        </div>
       </div>
     </div>
   )
