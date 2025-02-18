@@ -1,36 +1,36 @@
-// import { Metadata } from "next";
 import HeaderFooterLayout from "@/layouts/HeaderFooter.layout";
+import getEventHome from "@/utils/getEventsHome";
 import getLayout from "@/utils/getLayout";
+import { Banner } from "@/components/sections/Banner";
+import { Card } from "@/components/Card";
 
-// export const metadata: Metadata = {
-//   title: "meta?.metaTitle",
-//   description: "meta?.metaDescription",
-//   openGraph: {
-//     title: "meta?.metaTitle",
-//     description: "meta?.metaDescription",
-//     images: ["meta?.metaImage?.data?.attributes?.url"],
-//     url: "meta?.canonicalURL",
-//   },
-//   twitter: {
-//     title: "meta?.metaTitle",
-//     description: "meta?.metaDescription",
-//     images: ["meta?.metaImage?.data?.attributes?.url"],
-//   },
-//   keywords: ["meta?.keywords"],
-//   robots: "meta?.metaRobots",
-//   viewport: "width=device-width, initial-scale=1.0",
-//   alternates: {
-//     canonical: "meta?.canonicalURL",
-//   },
-// };
 
 export default async function Home() {
 
-    const layoutData = await getLayout();
+  const layoutData = await getLayout();
+  const eventHomeData = await getEventHome();
+  const bannerData = eventHomeData?.eventList?.data?.attributes?.banner;
+  const cardListData = eventHomeData?.events?.data;
 
-    return (
-      <HeaderFooterLayout breadcrumbs={false} layoutData={layoutData}>
-        <div className="flex flex-col w-p:space-y-12 w-t:space-y-12 w-d:space-y-18 w-d:mt-18"></div>
-      </HeaderFooterLayout>
-    );
-}
+  return (
+    <HeaderFooterLayout breadcrumbs={false} layoutData={layoutData}>
+      <div className="  flex justify-center w-full">      
+      <section className="desktop:mx-21 tablet:mx-10 mobile:mx-6 mx-auto max-w-[1200px]">
+        <div id="breadcrumb"></div>
+        <div className="flex flex-col mobile:space-y-12 tablet:space-y-12 desktop:space-y-18 my-6">
+          <Banner {...bannerData} />
+        </div>
+        <div id="description" className="flex flex-col w-3/4 gap-3 mobile:hidden">
+          <h1 className="font-headings text-6xl font-bold text-surface-900">{eventHomeData?.eventList?.data?.attributes?.title}</h1>
+          <p className="font-texts font-normal text-surface-950 text-base">{eventHomeData?.eventList?.data?.attributes?.description}</p>
+        </div>
+        <div id="card-list" className="flex flex-wrap gap-6 mt-6">
+          {cardListData?.map((cardData) => (
+              <Card {...cardData} />
+          ))}
+
+        </div>
+      </section></div>
+    </HeaderFooterLayout>
+  );
+} 
